@@ -9,24 +9,21 @@ board.on("ready", function() {
 	L3 = new five.Pin(5);
 	L4 = new five.Pin(6);
 	L5 = new five.Pin(7);
-  // Create a new `potentiometer` hardware instance.
+
   potentiometer = new five.Sensor({
     pin: "A0",
     freq: 250
   });
 
-  // Inject the `sensor` hardware into
-  // the Repl instance's context;
-  // allows direct command line access
+
   board.repl.inject({
     pot: potentiometer
   });
 
-  // "data" get the current reading from the potentiometer
   potentiometer.on("data", function() {
     console.log(this.value, this.raw);
 
-     if(this.value > 700)
+     if(this.value > 0)
 		{
 			L1.high();
 		}
@@ -35,7 +32,7 @@ board.on("ready", function() {
 		L1.low();
 	}
 
-     if(this.value > 500)
+     if(this.value > 200)
 		{
 			L2.high();
 		}
@@ -53,7 +50,7 @@ board.on("ready", function() {
 		L3.low();
 	}
 
-     if(this.value > 200)
+     if(this.value > 500)
 		{
 			L4.high();
 		}
@@ -62,7 +59,7 @@ board.on("ready", function() {
 		L4.low();
 	}
 
-     if(this.value > 0)
+     if(this.value > 700)
 		{
 			L5.high();
 		}
